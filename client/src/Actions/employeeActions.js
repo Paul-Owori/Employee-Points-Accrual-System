@@ -7,7 +7,7 @@ import {
   EMPLOYEES_LOADING,
   SIGNIN_EMPLOYEE,
   LOGOUT_EMPLOYEE
-} from "./userTypes";
+} from "../Types/employeeTypes";
 
 export const getEmployees = () => dispatch => {
   dispatch(setEmployeesLoading());
@@ -17,13 +17,14 @@ export const getEmployees = () => dispatch => {
 };
 
 export const addEmployee = employee => dispatch => {
-  dispatch(setEmployeesLoading(), { STUFF: "RANDOM OBJECT" });
+  dispatch(setEmployeesLoading());
+  console.log("employee==>>", employee);
   fetch("/employees/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(employeee)
+    body: JSON.stringify(employee)
   })
     .then(response => {
       return response.json();
