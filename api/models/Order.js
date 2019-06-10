@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 //Creates a schema
 const orderSchema = new Schema({
   order_id: mongoose.Schema.Types.ObjectId,
+  //Who placed the order?
+  employee_id: mongoose.Schema.Types.ObjectId,
   //What item/service was ordered for
   order_for: {
     type: string,

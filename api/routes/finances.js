@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Employee = require("../models/Employee");
+const Finance = require("../models/Finance");
 const crypto = require("crypto");
 
 router.get("/", (req, res, next) => {
-  Employee.find()
+  Finance.find()
     .exec()
     .then(docs => {
       if (docs.length > 0) {
@@ -24,18 +24,17 @@ router.get("/", (req, res, next) => {
     });
 });
 
-//To signup a new employee
+//To signup a new finance personnel
 router.post("/signup", (req, res, next) => {
-  let employee = new Employee();
+  let finance = new Finance();
 
-  employee.employee_firstName = req.body.firstName;
-  employee.employee_lastName = req.body.lastName;
-  employee.employee_email = req.body.email;
-  employee.employee_seniority = req.body.seniority;
-  employee.setPassword(req.body.password);
+  finance.finance_firstName = req.body.firstName;
+  finance.finance_lastName = req.body.lastName;
+  finance.finance_email = req.body.email;
+  finance.setPassword(req.body.password);
 
-  //This saves the employee in the database
-  employee
+  //This saves the finance personnel in the database
+  finance
     .save()
     .then(result => {
       res.status(201).json(result);
@@ -48,24 +47,22 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-//To login an employee
+//To login a finance personnel
 router.post("/signin", (req, res) => {
-  // find employee with requested email
+  // find finance personnel with requested email
   //receives two parameters, email and password
-  Employee.findOne({ employee_email: req.body.email }, function(err, employee) {
-    if (employee === null) {
+  Finance.findOne({ finance_email: req.body.email }, function(err, finance) {
+    if (finance === null) {
       return res.status(404).send({
         message: "User not found."
       });
     } else {
-      if (employee.validPassword(req.body.password)) {
+      if (finance.validPassword(req.body.password)) {
         return res.status(200).send({
-          _id: employee._id,
-          employee_firstName: employee.employee_firstName,
-          employee_lastName: employee.employee_lastName,
-          employee_seniority: employee.employee_seniority,
-          employee_email: employee.employee_email,
-          employee_joinDate: employee.employee_joinDate
+          _id: finance._id,
+          finance_firstName: finance.finance_firstName,
+          finance_lastName: finance.finance_lastName,
+          finance_email: finance.finance_email
         });
       } else {
         return res.status(404).send({
@@ -76,9 +73,9 @@ router.post("/signin", (req, res) => {
   });
 });
 
-router.get("/:employeeID", (req, res, next) => {
-  const id = req.params.employeeID;
-  Employee.findById(id)
+router.get("/:financeID", (req, res, next) => {
+  const id = req.params.financeID;
+  Finance.findById(id)
     .exec()
     .then(doc => {
       if (doc) {
@@ -95,8 +92,8 @@ router.get("/:employeeID", (req, res, next) => {
     });
 });
 
-router.patch("/:employeeID", (req, res, next) => {
-  const id = req.params.employeeID;
+router.patch("/:financeID", (req, res, next) => {
+  const id = req.params.financeID;
 
   /*A function that allows us to update only one value at a time 
     where necessary instead of forcing us to update all or nothing*/
@@ -106,7 +103,7 @@ router.patch("/:employeeID", (req, res, next) => {
     updateOps[ops.propName] = ops.value;
   }
 
-  Employee.updateMany({ _id: id }, { $set: updateOps })
+  Finance.updateMany({ _id: id }, { $set: updateOps })
     .exec()
     .then(result => {
       res.status(200).json({ result });
@@ -117,9 +114,9 @@ router.patch("/:employeeID", (req, res, next) => {
     });
 });
 
-router.delete("/:employeeID", (req, res, next) => {
-  const id = req.params.employeeID;
-  Employee.deleteOne({ _id: id })
+router.delete("/:financeID", (req, res, next) => {
+  const id = req.params.financeID;
+  Finance.deleteOne({ _id: id })
     .exec()
     .then(result => {
       res.status(200).json(result);
