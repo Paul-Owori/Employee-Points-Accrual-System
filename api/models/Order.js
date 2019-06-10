@@ -8,7 +8,7 @@ const orderSchema = new Schema({
   employee_id: mongoose.Schema.Types.ObjectId,
   //What item/service was ordered for
   order_for: {
-    type: string,
+    type: String,
     required: true
   },
   //How many points did the order cost
