@@ -24,6 +24,7 @@ const orderSchema = new Schema({
   //Which admin personnel approved the order?
   admin_approved_by: {
     type: mongoose.Schema.Types.ObjectId,
+    default: false,
     ref: "Admin"
   },
   //Have finance approved the order?
@@ -34,6 +35,7 @@ const orderSchema = new Schema({
   //Which finance personnel approved the order?
   finance_approved_by: {
     type: mongoose.Schema.Types.ObjectId,
+    default: false,
     ref: "Finance"
   },
   //When was the order made?
