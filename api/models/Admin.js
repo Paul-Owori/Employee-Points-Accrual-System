@@ -4,6 +4,7 @@ const crypto = require("crypto");
 
 //Creates a schema
 const adminSchema = new Schema({
+  //Admin personal and login details
   admin_id: mongoose.Schema.Types.ObjectId,
   admin_firstName: {
     type: String,

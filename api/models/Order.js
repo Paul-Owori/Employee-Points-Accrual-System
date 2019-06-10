@@ -4,21 +4,37 @@ const Schema = mongoose.Schema;
 //Creates a schema
 const orderSchema = new Schema({
   order_id: mongoose.Schema.Types.ObjectId,
+  //What item/service was ordered for
   order_for: {
     type: string,
     required: true
   },
+  //How many points did the order cost
   order_price: {
     type: Number,
     required: true
   },
-  approval_status: {
-    type: mongoose.Schema.Types.ObjectId
+  //Have admin approved the order?
+  admin_approval_status: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: false
   },
-  approved_by: {
+  //Which admin personnel approved the order?
+  admin_approved_by: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin"
   },
+  //Have finance approved the order?
+  finance_approval_status: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: false
+  },
+  //Which finance personnel approved the order?
+  finance_approved_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Finance"
+  },
+  //When was the order made?
   order_date: {
     type: Date,
     default: Date.now

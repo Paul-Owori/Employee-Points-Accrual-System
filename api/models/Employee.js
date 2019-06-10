@@ -4,6 +4,7 @@ const crypto = require("crypto");
 
 //Creates a schema
 const employeeSchema = new Schema({
+  //Employee personal details
   employee_id: mongoose.Schema.Types.ObjectId,
   employee_firstName: {
     type: String,
@@ -17,14 +18,23 @@ const employeeSchema = new Schema({
     type: String,
     required: true
   },
-  employee_joinDate: {
-    type: String,
-    required: true
-  },
+  //Employee seniority tier
   employee_seniority: {
     type: String,
     required: true
   },
+  employee_joinDate: {
+    type: Date,
+    default: Date.now
+  },
+  //This will be a dynamic figure to be deducted
+  //from the total number of points an employee should have
+  // based on current date and join date
+  employee_pointsSpent: {
+    type: Number,
+    default: 0
+  },
+  //Employee password details
   employee_salt: {
     type: String,
     required: true
@@ -53,4 +63,4 @@ employeeSchema.methods.validPassword = function(password) {
   return this.employee_hash === hash;
 };
 
-module.exports = employee = mongoose.model("employee", employeeSchema);
+module.exports = Employee = mongoose.model("Employee", employeeSchema);
