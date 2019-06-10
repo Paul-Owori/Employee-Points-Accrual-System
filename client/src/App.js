@@ -5,8 +5,8 @@ import EmployeeSignUp from "./Components/EmployeeSignUp";
 import EmployeeLanding from "./Components/EmployeeLanding";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Provider } from "react-redux"; //REQUIRED FOR REDUX
-import store from "./store"; //REQUIRED FOR REDUX
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
