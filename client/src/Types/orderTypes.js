@@ -1,4 +1,4 @@
-export const GET_ORDERS_USER = "GET_ORDERS_USER";
+export const GET_ORDERS_EMPLOYEE = "GET_ORDERS_EMPLOYEE";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER = "GET_ORDER";
 //Before employee confirms order, order will be saved in sessionStorage as a pre-order
