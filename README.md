@@ -2,6 +2,11 @@
 
 Employee-Points-Accrual-System is a simple app to keep track of employee benefits based on a system that accrues points to each employee based on their employment tier and tenure. The points can then be exchanged for various benefits.
 
+## Note
+
+This project was completed to this level of progress in 4 hrs,
+A more complete version of it can be found in this repository => [Repository-link](https://github.com/Paul-Owori/Employee-Points-Accrual-System-2)
+
 ## Installation
 
 Clone the repository
